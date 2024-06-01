@@ -1,0 +1,41 @@
+name: Build and Deploy to AKS
+ 
+on:
+
+  push:
+
+    branches:
+
+      - main
+ 
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+ 
+    steps:
+
+    - name: Checkout code
+
+      uses: actions/checkout@v2
+ 
+    - name: Login to Azure Container Registry
+
+      uses: azure/docker-login@v1
+
+      with:
+
+        login-server: demoacr1.azurecr.io
+
+        username: ${{ secrets.ACR_USERNAME }}
+
+        password: ${{ secrets.ACR_PASSWORD }}
+ 
+    - name: Build Docker image
+
+      run: |
+
+        docker build -t demoacr1.azurecr.io/wisecow:latest .
+
+        docker push demoacr1.azurecr.io/wisecow:latest
