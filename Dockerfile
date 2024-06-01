@@ -1,4 +1,3 @@
-[5:45 pm] Deepak (Guest)
 # Use a Linux base image
 
 FROM ubuntu:latest
