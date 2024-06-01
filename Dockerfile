@@ -1,3 +1,4 @@
+[5:45 pm] Deepak (Guest)
 # Use a Linux base image
 
 FROM ubuntu:latest
@@ -10,15 +11,11 @@ ENV SRVPORT=4499 \
  
 # Install necessary packages
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && \
 
-    netcat \
+    apt-get install -y netcat-traditional fortune cowsay && \
 
-    fortune \
-
-    cowsay \
-
-    && rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/*
  
 # Copy the script into the container
 
@@ -35,3 +32,4 @@ EXPOSE $SRVPORT
 # Run the script when the container starts
 
 CMD ["/usr/local/bin/wisecow.sh"]
+
