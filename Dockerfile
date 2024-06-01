@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y \
  
 # Copy the script into the container
 
-COPY your_script.sh /usr/local/bin/wisecow.sh
+COPY wisecow.sh /usr/local/bin/wisecow.sh
  
 # Make the script executable
 
