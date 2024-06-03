@@ -40,36 +40,12 @@ jobs:
 
         docker push demoacr1.azurecr.io/wisecow:latest
  
-  deploy:
-
-    runs-on: ubuntu-latest
- 
-    steps:
-
     - name: Login to Azure
-
       uses: azure/login@v1
-
       with:
-
         creds: ${{ secrets.AZURE_CREDENTIALS }}
  
     - name: Deploy to AKS
-
-      uses: Azure/k8s-deploy@v1
-
-      with:
-
-        azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
-
-        azure_container_registry: demoacr1.azurecr.io
-
-        azure_resource_group: Demo-rg
-
-        kubernetes_cluster: DemoAKS
-
-        namespace: default
-
-        images: |
-
-          demoacr1.azurecr.io/wisecow:latest
+      run: |
+        az aks get-credentials --resource-group Demo-rg --name github-aks --overwrite-existing
+        kubectl apply -f deployment.yml
