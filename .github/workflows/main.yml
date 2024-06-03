@@ -52,6 +52,6 @@ jobs:
 
       run: |
 
-        az aks get-credentials --resource-group Demo-rg --name github-aks --overwrite-existing
+        az aks get-credentials --resource-group Demo-rg --name DemoAKS --overwrite-existing
 
         kubectl apply -f deployment.yml
